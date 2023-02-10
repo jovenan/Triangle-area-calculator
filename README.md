@@ -1,1 +1,1 @@
-# Triangle-area-calculator
+# Triangle Area Calculator
