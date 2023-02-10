@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle area</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        header {
+            margin: 5% 0;
+            text-align: center;
+            font-size: 2rem;
+            color: #5D79AB;
+            text-shadow: 0 0 10px;
+        }
+        main {
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.5rem;
+        }
+        label {
+            display: block;
+            margin: 4% 0;
+            font-size: 1rem;
+            color: #5D79AB;
+        }
+        input {
+            outline: none;
+        }
+        button {
+            background-color: #5D79AB;
+            border: 0;
+            padding: 3px 5px;
+            color: white;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        p {
+            padding-top: 3%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Triangle Area Calculator</h1>
+    </header>
+    <main>
+        <h2>Function to find the area of triangle</h2>
+        <label for="side1">
+            Value of side 1:
+            <input type="number" name="side1" id="side1">
+        </label>
+        <label for="side2">
+            Value of side 2:
+            <input type="number" name="side2" id="side2">
+        </label>
+        <label for="side3">
+            Value of side 3:
+            <input type="number" name="side3" id="side3">
+        </label>
+        <button>Calculate</button>
+        <p>The area of triangle is: <span></span></p>
+    </main>
+    <script>
+        const calculateArea = () => {
+            const side1 = parseInt(document.querySelector("#side1").value);
+            const side2 = parseInt(document.querySelector("#side2").value);
+            const side3 = parseInt(document.querySelector("#side3").value);
+
+            const resultText = document.querySelector("p span");
+
+            // Validate if is a triangle
+            if (
+                (side1 < (side2 + side3)) && 
+                (side2 < (side1 + side3)) && 
+                (side3 < (side1 + side2))) 
+            {
+                const s = (side1 + side2 + side3) / 2;
+
+                const area = Math.sqrt(s * ((s - side1) * (s - side2) * (s - side3))).toFixed(2);
+
+                resultText.innerHTML = area;
+            } else {
+                resultText.innerHTML = "These sides do not form a triangle"
+            }
+        }
+
+        const buttonCalculate = document.querySelector("button");
+        buttonCalculate.addEventListener("click", calculateArea);
+    </script>
+</body>
+</html>
